@@ -1,10 +1,13 @@
 import React from 'react';
-import Timer from './components/Timer';
+import CardsField from './components/Cards/CardsField';
 
 class App extends React.Component {
   render(): JSX.Element {
-    return <Timer />;
+    return (
+    <>
+      <CardsField></CardsField>
+      </>
+      )   
   }
 }
-
 export default App;
