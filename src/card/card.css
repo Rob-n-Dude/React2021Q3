@@ -1,0 +1,15 @@
+.allCards{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 30px;
+}
+
+.card {
+  background-color: rgb(20, 233, 222);
+  color: rgb(4, 4, 49);
+  width: 220px;
+  margin: 5px;
+}
+.formInfo{
+  margin: 8px 2px 0;
+}

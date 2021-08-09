@@ -1,0 +1,49 @@
+.formStyle {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  padding: 20px;
+  margin: 20px auto;
+  border: 3px solid rgb(20, 233, 222);
+  align-items: center;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  width: inherit;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+p{
+  margin: 10px 0;
+}
+input {
+  line-height: 18px;
+}
+.btn {
+  background-color: rgb(20, 233, 222);
+  color: rgb(4, 4, 49);
+  border: none;
+  font-weight: 600;
+  margin-top: 20px;
+  padding: 6px 70px;
+  font-size: 14px;
+}
+.checkBox {
+  flex-direction: revert;
+  align-items: baseline;
+}
+span{
+  font-size: 14px;
+  color: red;
+}
+.checkBox p{
+  font-size: 14px;
+}
+
+.sex {
+  display: flex;
+  flex-direction: row;
+}
