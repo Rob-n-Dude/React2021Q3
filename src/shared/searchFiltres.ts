@@ -7,14 +7,14 @@ export enum SortBy {
 export const initialSearch = {
     q: '',
     sortBy: SortBy.publishedAt,
-    pageSize: 20,
+    pageSize: 5,
     page: 1,
 }
 
 export interface SearchFiltres {
     q: string,
     sortBy: SortBy,
-    pageSize?: number,
-    page?: number,
+    pageSize: number,
+    page: number,
 }
 

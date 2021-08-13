@@ -1,16 +1,39 @@
 import React, { useState } from 'react';
 import { CardsField } from './components/Cards/CardsField';
+import { Pagination } from './components/Pagination/pagination';
 import { SeachBar } from './components/SearchBar/SearchBar';
-import { SearchValue } from './shared/searchValue';
+import { getNews } from './services/Api';
+import { initialSearch, SearchFiltres } from './shared/searchFiltres';
+import { SearchArticle } from './shared/searchValue';
 
 const App: React.FC = ():JSX.Element => {
 
-  const [searchResults, setSearchResults] = useState<SearchValue[]>([]);
+  const [searchParams, setSearchParams] = useState<SearchFiltres>(initialSearch)
+  const [totalResults, setTotalResults] = useState<number>(0);
+  const [searchResults, setSearchResults] = useState<SearchArticle[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const getSearchResults = (filters:SearchFiltres) => {
+    setLoading(true);
+    getNews(filters).then((value) => {
+      setSearchParams(filters);
+      setTotalResults(value.totalResults);
+      setSearchResults(value.articles);
+    }).finally(() => {
+      setLoading(false);
+    })
+  }
 
   return (
     <>
-      <SeachBar setSearchResults={setSearchResults}/>
-      <CardsField searchResults={searchResults}/>
+      <SeachBar getSearchResults={getSearchResults} totalResults={totalResults}/>
+      {
+        loading === true ? <p>Loading</p> : 
+        <>
+        <CardsField searchResults={searchResults}/>
+        {totalResults === 0 ? '' : <Pagination totalResults={totalResults} getSearchResults={getSearchResults} searchParams={searchParams} setSearchParams={setSearchParams} ></Pagination>}
+        </>
+      }
     </>
   )   
 }

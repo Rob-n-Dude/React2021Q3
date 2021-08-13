@@ -1,4 +1,9 @@
 export interface SearchValue {
+    totalResults: number,
+    articles: [SearchArticle],
+}
+
+export interface SearchArticle {
     source: {
         id: number,
         name: string,

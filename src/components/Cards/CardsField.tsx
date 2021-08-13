@@ -1,9 +1,9 @@
 import React from "react";
-import { SearchValue } from "../../shared/searchValue";
+import { SearchArticle } from "../../shared/searchValue";
 import { Card } from "./Card";
 
 interface iCardsField {
-    searchResults: SearchValue[]
+    searchResults: SearchArticle[]
 }
 
 export const CardsField:React.FC<iCardsField> = ({searchResults}): JSX.Element => {

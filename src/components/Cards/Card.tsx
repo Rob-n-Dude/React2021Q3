@@ -1,9 +1,9 @@
 import React from "react";
-import { SearchValue } from "../../shared/searchValue";
+import { SearchArticle } from "../../shared/searchValue";
 import './card.scss';
 
 interface iCard {
-    info: SearchValue,
+    info: SearchArticle,
     key: number,
 }
 

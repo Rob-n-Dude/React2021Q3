@@ -1,28 +1,22 @@
-import React, { Dispatch, FormEvent, useState } from 'react';
-import { getNews } from '../../services/Api';
+import React, {  FormEvent, SyntheticEvent, useState } from 'react';
 import { SearchFiltres, SortBy } from '../../shared/searchFiltres';
-import { SearchValue } from '../../shared/searchValue';
 import './searchBar.scss';
 
 interface ISearchProps {
-    setSearchResults: Dispatch<React.SetStateAction<SearchValue[]>>
+    getSearchResults: (filtres: SearchFiltres) => void,
+    totalResults: number;
 }
 
-export const SeachBar: React.FC<ISearchProps> = ({setSearchResults}):JSX.Element => {
+export const SeachBar: React.FC<ISearchProps> = ({getSearchResults, totalResults}):JSX.Element => {
 
     const [sortBy, setSortBy] = useState<SortBy>(SortBy.publishedAt);
     const [searchText, setSearchText] = useState<string>('');
-    const [loading, setLoading] = useState<boolean>(false);
+    const [pageSize, setPageSize] = useState<number>(5);
 
     const submitHandler = (e: FormEvent) => {
         e.preventDefault();
-        setLoading(true);
-        getNews(filterParser()).then((value) => {
-            setSearchResults(value)
-        }).finally(() => {
-            setLoading(false)
-        });
-
+        const filter = filterParser();
+        getSearchResults(filter);
     }
 
     const filterParser = (): SearchFiltres => {
@@ -30,8 +24,13 @@ export const SeachBar: React.FC<ISearchProps> = ({setSearchResults}):JSX.Element
             q: searchText,
             sortBy: sortBy,
             page: 1,
-            pageSize: 20,
+            pageSize: pageSize,
         }
+    }
+
+    const selectHandler = (e: SyntheticEvent) => {
+        const target = (e.target as HTMLSelectElement);
+        setPageSize(+target.value);
     }
 
     return (
@@ -45,24 +44,36 @@ export const SeachBar: React.FC<ISearchProps> = ({setSearchResults}):JSX.Element
                             placeholder='What u want to find?' 
                             value={searchText} 
                             onChange={(event) => setSearchText(event.target.value)}/>
-                        <button type='submit'>{loading === true ? 'Loading...' : 'Search'}</button>
+                        <button type='submit'>Search</button>
                     </form>
-                    <div className='search-bar_radio'>
-                        <input type="radio"
-                            value={SortBy.popularity}
-                            checked={sortBy === SortBy.popularity}
-                            onChange={() => setSortBy(SortBy.popularity)} />
-
-                        <input type="radio"
-                            value={SortBy.publishedAt}
-                            checked={sortBy === SortBy.publishedAt}
-                            onChange={() => setSortBy(SortBy.publishedAt)} />
-
-                        <input type="radio"
-                            value={SortBy.relevancy}
-                            checked={sortBy === SortBy.relevancy}
-                            onChange={() => setSortBy(SortBy.relevancy)} />
-                    </div>
+                </div>
+                <div className='search-bar_radio'>
+                    <select value={pageSize} onChange={(event) => selectHandler(event)}>
+                        <option value='5'>5</option>
+                        <option value='8'>8</option>
+                        <option value='10'>10</option>
+                    </select>
+                    <input type="radio"
+                        value={SortBy.popularity}
+                        checked={sortBy === SortBy.popularity}
+                        onChange={() => setSortBy(SortBy.popularity)} 
+                        id='radio-popularity'/>
+                        <label htmlFor='radio-popularity'>{SortBy.popularity}</label>
+                    <input type="radio"
+                        value={SortBy.publishedAt}
+                        checked={sortBy === SortBy.publishedAt}
+                        onChange={() => setSortBy(SortBy.publishedAt)} 
+                        id='radio-publishedAt'/>
+                        <label htmlFor='radio-publishedAt'>{SortBy.publishedAt}</label>
+                        
+                    <input type="radio"
+                        value={SortBy.relevancy}
+                        checked={sortBy === SortBy.relevancy}
+                        onChange={() => setSortBy(SortBy.relevancy)} 
+                        id='radio-relevancy'/>
+                        <label htmlFor='radio-relevancy'>{SortBy.relevancy}</label>
+                    
+                    {totalResults !== 0 && <p>TotalPages: {Math.ceil(totalResults/pageSize)}</p>}
                 </div>
             </div>
         </>
