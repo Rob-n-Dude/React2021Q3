@@ -1,40 +1,44 @@
-import React, { useState } from 'react';
-import { CardsField } from './components/Cards/CardsField';
-import { Pagination } from './components/Pagination/pagination';
-import { SeachBar } from './components/SearchBar/SearchBar';
-import { getNews } from './services/Api';
-import { initialSearch, SearchFiltres } from './shared/searchFiltres';
-import { SearchArticle } from './shared/searchValue';
+import React from 'react';
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { Header } from './components/Header/Header';
+import HomePage from './components/pages/HomePage';
+import './app.scss'
+import { AboutPage } from './components/pages/AboutPage';
+import { ErrorPage } from './components/pages/ErrorPage';
 
 const App: React.FC = ():JSX.Element => {
 
-  const [searchParams, setSearchParams] = useState<SearchFiltres>(initialSearch)
-  const [totalResults, setTotalResults] = useState<number>(0);
-  const [searchResults, setSearchResults] = useState<SearchArticle[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const getSearchResults = (filters:SearchFiltres) => {
-    setLoading(true);
-    getNews(filters).then((value) => {
-      setSearchParams(filters);
-      setTotalResults(value.totalResults);
-      setSearchResults(value.articles);
-    }).finally(() => {
-      setLoading(false);
-    })
-  }
+  const routes = [
+    {path: '/', Component: HomePage},
+    {path: '/about', Component: AboutPage},
+    {path: '*', Component: ErrorPage},
+  ]
 
   return (
-    <>
-      <SeachBar getSearchResults={getSearchResults} totalResults={totalResults}/>
-      {
-        loading === true ? <p>Loading</p> : 
-        <>
-        <CardsField searchResults={searchResults}/>
-        {totalResults === 0 ? '' : <Pagination totalResults={totalResults} getSearchResults={getSearchResults} searchParams={searchParams} setSearchParams={setSearchParams} ></Pagination>}
-        </>
-      }
-    </>
+    <HashRouter>
+      <Header />
+        <TransitionGroup>
+          <Switch>
+          {routes.map(({ path, Component }) => (
+              <Route key={path} exact path={path}>
+                {({ match }) => (
+                  <CSSTransition
+                    in={match != null}
+                    timeout={300}
+                    classNames="page"
+                    unmountOnExit
+                  >
+                    <div className="page">
+                      <Component />
+                    </div>
+                  </CSSTransition>
+                )}
+              </Route>
+            ))}
+        </Switch>
+      </TransitionGroup>
+    </HashRouter>
   )   
 }
 
