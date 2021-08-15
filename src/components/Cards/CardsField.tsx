@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { SearchArticle } from "../../shared/searchValue";
 import { Card } from "./Card";
 
@@ -9,7 +10,11 @@ interface iCardsField {
 export const CardsField:React.FC<iCardsField> = ({searchResults}): JSX.Element => {
     const getCards = (): JSX.Element[] => {
         return searchResults.map((info, index) => {
-            return <Card info={info} key={index}/>;
+            return (
+            <>
+            <Link to={`/details/${index}`} key={`${index}${index}`}><Card info={info} key={`${index}${index}`}/></Link>
+            </>
+            );
         })  
     }
     return (

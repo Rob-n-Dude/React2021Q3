@@ -4,7 +4,6 @@ import './card.scss';
 
 interface iCard {
     info: SearchArticle,
-    key: number,
 }
 
 export const Card:React.FC<iCard> = ({info}):JSX.Element => {
