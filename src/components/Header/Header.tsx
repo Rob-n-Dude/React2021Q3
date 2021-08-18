@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import './header.scss'
 
 
 export const Header = ():JSX.Element => {
@@ -8,10 +9,10 @@ export const Header = ():JSX.Element => {
             <nav>
                 <ul>
                     <li>
-                        <Link to='/'>Home page</Link>
+                        <NavLink exact to='/'>Home page</NavLink>
                     </li>
                     <li>
-                        <Link to='/about'>About page</Link>
+                        <NavLink to='/about'>About page</NavLink>
                     </li>
                 </ul>
             </nav>

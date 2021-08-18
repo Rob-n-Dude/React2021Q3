@@ -32,6 +32,9 @@
         &_form {
             display: flex;
             flex-direction: row;
+            & > button {
+                border-radius: 0 1rem 1rem 0;
+            }
         }        
     }
     &_radio {

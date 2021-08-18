@@ -11,8 +11,8 @@ const createRequestUrl = (filtres: SearchFiltres): string => {
 }
 
 const createDetailsUrl = (tittle: string): string => {
-    const query = tittle.split(' ').join('+');
-    return DETAILS_URL + query + API_KEY;
+    console.log(tittle);
+    return DETAILS_URL + tittle + API_KEY;
 }
 
 export const getNews = async (filters: SearchFiltres): Promise<SearchValue> => {

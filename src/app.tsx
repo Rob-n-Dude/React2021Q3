@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Switch } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { Header } from './components/Header/Header';
 import HomePage from './components/pages/HomePage';
@@ -14,14 +14,14 @@ const App: React.FC = ():JSX.Element => {
   const routes = [
     {path: '/', Component: HomePage},
     {path: '/about', Component: AboutPage},
-    {path: '/details/*', Component: Details},
+    {path: '/details/id=*', Component: Details},
     {path: '*', Component: ErrorPage},
   ]
 
   const [searchResults, setSearchResults] = useState<SearchArticle[]>([]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Header />
         <TransitionGroup>
           <Switch>
@@ -43,7 +43,7 @@ const App: React.FC = ():JSX.Element => {
             ))}
         </Switch>
       </TransitionGroup>
-    </BrowserRouter>
+    </HashRouter>
   )   
 }
 

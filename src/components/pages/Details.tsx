@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getDetails } from "../../services/Api";
-import { IPage } from "../../shared/interfaces";
 import { SearchArticle } from "../../shared/searchValue";
 import { DetailCard } from "../Cards/DetailCard";
 
-export const Details:React.FC<IPage> = ({results}):JSX.Element => {
+export const Details:React.FC = ():JSX.Element => {
 
     const history = useHistory();
     const [detailInfo, setDetailInfo] = useState<SearchArticle>({} as SearchArticle);
@@ -22,11 +21,12 @@ export const Details:React.FC<IPage> = ({results}):JSX.Element => {
 
     const getTitle = (): string => {
         const pathName = history.location.pathname.split('/');
-        const index = (+pathName[pathName.length-1]);
-        return results[index].title;
+        const title = pathName[pathName.length-1].slice(3);
+        return title;
     }
 
     useEffect(() => {
+        console.log('spo')
         getDetailsInfo(getTitle())
     }, [])
     return (
