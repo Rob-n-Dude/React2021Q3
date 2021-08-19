@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, HashRouter, Route, Switch } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { Header } from './components/Header/Header';
@@ -7,7 +7,6 @@ import './app.scss'
 import { AboutPage } from './components/pages/AboutPage';
 import { ErrorPage } from './components/pages/ErrorPage';
 import { Details } from './components/pages/Details';
-import { SearchArticle } from './shared/searchValue';
 
 const App: React.FC = ():JSX.Element => {
 
@@ -17,8 +16,6 @@ const App: React.FC = ():JSX.Element => {
     {path: '/details/id=*', Component: Details},
     {path: '*', Component: ErrorPage},
   ]
-
-  const [searchResults, setSearchResults] = useState<SearchArticle[]>([]);
 
   return (
     <HashRouter>
@@ -35,7 +32,7 @@ const App: React.FC = ():JSX.Element => {
                     unmountOnExit
                   >
                     <div className="page">
-                      <Component setResults={setSearchResults} results={searchResults}/>
+                      <Component />
                     </div>
                   </CSSTransition>
                 )}

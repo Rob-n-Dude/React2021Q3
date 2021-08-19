@@ -1,14 +1,16 @@
 import React, {  FormEvent, SyntheticEvent, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { iStore } from '../../redux/store';
 import { SearchFiltres, SortBy } from '../../shared/searchFiltres';
 import './searchBar.scss';
 
 interface ISearchProps {
     getSearchResults: (filtres: SearchFiltres) => void,
-    totalResults: number;
 }
 
-export const SeachBar: React.FC<ISearchProps> = ({getSearchResults, totalResults}):JSX.Element => {
+export const SeachBar: React.FC<ISearchProps> = ({getSearchResults}):JSX.Element => {
 
+    const results = useSelector<iStore, number>(state => state.searchCount);
     const [sortBy, setSortBy] = useState<SortBy>(SortBy.publishedAt);
     const [searchText, setSearchText] = useState<string>('');
     const [pageSize, setPageSize] = useState<number>(5);
@@ -73,7 +75,7 @@ export const SeachBar: React.FC<ISearchProps> = ({getSearchResults, totalResults
                         id='radio-relevancy'/>
                         <label htmlFor='radio-relevancy'>{SortBy.relevancy}</label>
                     
-                    {totalResults !== 0 && <p>TotalPages: {Math.ceil(totalResults/pageSize)}</p>}
+                    {results !== 0 && <p>TotalPages: {Math.ceil(results/pageSize)}</p>}
                 </div>
             </div>
         </>

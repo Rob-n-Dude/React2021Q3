@@ -11,7 +11,6 @@ const createRequestUrl = (filtres: SearchFiltres): string => {
 }
 
 const createDetailsUrl = (tittle: string): string => {
-    console.log(tittle);
     return DETAILS_URL + tittle + API_KEY;
 }
 
