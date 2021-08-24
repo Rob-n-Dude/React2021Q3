@@ -37,7 +37,7 @@ export const SeachBar: React.FC<ISearchProps> = ({getSearchResults}):JSX.Element
 
     return (
         <>
-            <div className='search-bar'>
+            <div className='search-bar' data-testid='search-bar'>
                 <div className='search-bar_main'>
                     <img className='search-bar_main_image' src='./search-icon.png'></img>
                     <form className='search-bar_main_form' onSubmit={submitHandler}>

@@ -17,7 +17,7 @@ export const CardsField:React.FC = (): JSX.Element => {
         })  
     }
     return (
-        <div className='cardField'> 
+        <div className='cardField' data-testid='field'> 
             {getCards()}
         </div>
     )

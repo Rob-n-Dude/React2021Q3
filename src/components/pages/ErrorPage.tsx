@@ -2,6 +2,8 @@ import React from "react";
 
 export const ErrorPage:React.FC = ():JSX.Element => {
     return (
-        <p>This page doesn&lsquo;t exists</p>
+        <>
+        <p data-testid='ErrorPage-text'>This page is not exists</p>
+        </>
     )
 }

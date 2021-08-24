@@ -50,7 +50,7 @@ export const Pagination:React.FC<IPagination> = ({ getSearchResults}): JSX.Eleme
 
     return (
         <>
-            <form onSubmit={(e) =>submitHandler(e)}>
+            <form onSubmit={(e) =>submitHandler(e)} data-testid='pagination'>
                 <button type='submit' onClick={() => decreasePage()} disabled={currentPage === 1}>Prev page</button>
                 <input type="text" onChange={(e:ChangeEvent<HTMLInputElement>) => setPageHandler(e)} value={currentPage}/>
                 <button type='submit'>Go to</button>

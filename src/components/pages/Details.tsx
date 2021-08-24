@@ -4,7 +4,7 @@ import { getDetails } from "../../services/Api";
 import { SearchArticle } from "../../shared/searchValue";
 import { DetailCard } from "../Cards/DetailCard";
 
-export const Details:React.FC = ():JSX.Element => {
+export const Details:React.FC = (): JSX.Element => {
 
     const history = useHistory();
     const [detailInfo, setDetailInfo] = useState<SearchArticle>({} as SearchArticle);

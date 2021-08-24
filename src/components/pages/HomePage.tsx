@@ -34,7 +34,7 @@ const HomePage: React.FC = ():JSX.Element => {
         loading === true ? <p>Loading</p> : 
         <>
         <CardsField />
-        {resultCount === 0 ? '' : <Pagination  getSearchResults={getSearchResults} ></Pagination>}
+        {resultCount === 0 ? '' : <Pagination getSearchResults={getSearchResults} ></Pagination>}
         </>
       }
     </>
