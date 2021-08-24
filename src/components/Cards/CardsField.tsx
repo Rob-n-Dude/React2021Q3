@@ -12,9 +12,7 @@ export const CardsField:React.FC = (): JSX.Element => {
     const getCards = (): JSX.Element[] => {
         return results.map((info, index) => {
             return (
-            <>
-            <Link to={`/details/id=${titleParcer(info.title)}`} key={`${index}${index}`}><Card info={info} key={`${index}${index}`}/></Link>
-            </>
+                <Link to={`/details/id=${titleParcer(info.title)}`} key={index}><Card info={info}/></Link>
             );
         })  
     }

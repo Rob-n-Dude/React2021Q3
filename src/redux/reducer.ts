@@ -1,5 +1,5 @@
 import { ActionTypes, IAction } from "./actionTypes";
-import { initialState, iStore } from "./store";
+import { initialState, iStore } from "./store"
 
 export const newsReducer = (state: iStore = initialState, action:IAction<any>): iStore => {
     switch (action.type) {
