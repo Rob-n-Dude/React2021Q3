@@ -6,12 +6,12 @@ import './header.scss'
 export const Header = ():JSX.Element => {
     return (
         <header>
-            <nav>
+            <nav data-testid='navigation'>
                 <ul>
-                    <li>
+                    <li data-testid='link'>
                         <NavLink exact to='/'>Home page</NavLink>
                     </li>
-                    <li>
+                    <li data-testid='link'>
                         <NavLink to='/about'>About page</NavLink>
                     </li>
                 </ul>

@@ -40,28 +40,31 @@ export const SeachBar: React.FC<ISearchProps> = ({getSearchResults}):JSX.Element
             <div className='search-bar' data-testid='search-bar'>
                 <div className='search-bar_main'>
                     <img className='search-bar_main_image' src='./search-icon.png'></img>
-                    <form className='search-bar_main_form' onSubmit={submitHandler}>
+                    <form className='search-bar_main_form' onSubmit={submitHandler} data-testid='search-form'>
                         <input className='search-bar_main_input' 
                             type='text' 
                             placeholder='What u want to find?' 
                             value={searchText} 
-                            onChange={(event) => setSearchText(event.target.value)}/>
+                            onChange={(event) => setSearchText(event.target.value)}
+                            data-testid='search-bar_main_input'/>
                         <button type='submit'>Search</button>
                     </form>
                 </div>
                 <div className='search-bar_radio'>
-                    <select value={pageSize} onChange={(event) => selectHandler(event)}>
+                    <select value={pageSize} onChange={(event) => selectHandler(event)} data-testid='select-size'>
                         <option value='5'>5</option>
                         <option value='8'>8</option>
                         <option value='10'>10</option>
                     </select>
                     <input type="radio"
+                        data-testid='radio-popularity'
                         value={SortBy.popularity}
                         checked={sortBy === SortBy.popularity}
                         onChange={() => setSortBy(SortBy.popularity)} 
                         id='radio-popularity'/>
                         <label htmlFor='radio-popularity'>{SortBy.popularity}</label>
                     <input type="radio"
+                        data-testid='radio-publishedAt'
                         value={SortBy.publishedAt}
                         checked={sortBy === SortBy.publishedAt}
                         onChange={() => setSortBy(SortBy.publishedAt)} 
@@ -69,13 +72,14 @@ export const SeachBar: React.FC<ISearchProps> = ({getSearchResults}):JSX.Element
                         <label htmlFor='radio-publishedAt'>{SortBy.publishedAt}</label>
                         
                     <input type="radio"
+                        data-testid='radio-relevancy' 
                         value={SortBy.relevancy}
                         checked={sortBy === SortBy.relevancy}
                         onChange={() => setSortBy(SortBy.relevancy)} 
                         id='radio-relevancy'/>
                         <label htmlFor='radio-relevancy'>{SortBy.relevancy}</label>
                     
-                    {results !== 0 && <p>TotalPages: {Math.ceil(results/pageSize)}</p>}
+                    <p>TotalPages: {Math.ceil(results/pageSize)}</p>
                 </div>
             </div>
         </>

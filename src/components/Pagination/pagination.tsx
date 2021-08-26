@@ -52,7 +52,7 @@ export const Pagination:React.FC<IPagination> = ({ getSearchResults}): JSX.Eleme
         <>
             <form onSubmit={(e) =>submitHandler(e)} data-testid='pagination'>
                 <button type='submit' onClick={() => decreasePage()} disabled={currentPage === 1}>Prev page</button>
-                <input type="text" onChange={(e:ChangeEvent<HTMLInputElement>) => setPageHandler(e)} value={currentPage}/>
+                <input data-testid='input' type="text" onChange={(e:ChangeEvent<HTMLInputElement>) => setPageHandler(e)} value={currentPage}/>
                 <button type='submit'>Go to</button>
                 <button  type='submit' onClick={() => increasePage()} disabled={currentPage === Math.ceil(resultCount/searchParams.pageSize)}>Next page</button>
             </form>

@@ -8,7 +8,7 @@ interface iCard {
 
 export const Card:React.FC<iCard> = ({info}):JSX.Element => {
     return (
-        <div className='card'>
+        <div className='card' data-testid='card'>
             <div className='card-content'>
                 <div className='card-content_tittle'>{info.title}</div>
                 <div className='card-content_content'>{info.content}</div>
