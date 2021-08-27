@@ -1,8 +1,7 @@
-import {configureStore} from '@reduxjs/toolkit'
 import { createStore } from "redux";
 import { initialSearch, SearchFiltres } from "../shared/searchFiltres";
 import { SearchArticle } from "../shared/searchValue";
-import { newsReducer } from "./reducer";
+import  {rootReduser}  from "./reducer";
 
 export interface iStore {
     results: SearchArticle[],
@@ -18,9 +17,4 @@ export const initialState: iStore = {
     isLoading: false,
 }
 
-export const store = createStore(newsReducer, initialState);
-// export const store = configureStore({
-//     reducer: newsReducer,
-//     preloadedState: initialState,
-//     devTools: process.env.NODE_ENV !== 'production',
-// })
+export const store = createStore(rootReduser);

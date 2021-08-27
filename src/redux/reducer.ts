@@ -1,7 +1,7 @@
 import { ActionTypes, IAction } from "./actionTypes";
 import { initialState, iStore } from "./store"
 
-export const newsReducer = (state: iStore = initialState, action:IAction<any>): iStore => {
+export const newsReducer = (state: iStore, action:IAction<any>): iStore => {
     switch (action.type) {
         case ActionTypes.SET_IS_LOADING: {
             return {
@@ -27,4 +27,8 @@ export const newsReducer = (state: iStore = initialState, action:IAction<any>): 
             return state;
         }
     }
+}
+
+export const rootReduser = (state: iStore = initialState, action:IAction<any>): iStore => {
+    return newsReducer(state, action)
 }

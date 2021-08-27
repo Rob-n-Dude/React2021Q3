@@ -16,6 +16,10 @@ describe('testing reduser', () => {
         state = testStore.getState();
     })
 
+    it('should return initial state', () => {
+        expect(state).toEqual(initialState);
+    })
+
     it('should set loading state', () => {
         testStore.dispatch(actions.SET_IS_LOADING(true));
 
@@ -44,7 +48,7 @@ describe('testing reduser', () => {
         const expectedAction = { type: ActionTypes.SET_SEARCH_RESULTS,
             payload: articlesToSet, }
 
-        expect(passedAction).toEqual([expectedAction])
+        expect(passedAction).toEqual([expectedAction]);
     })
 
     it('Should set search querry', () => {

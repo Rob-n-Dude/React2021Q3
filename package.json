@@ -14,12 +14,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "html-webpack-plugin": "^5.3.1",
+    "node-fetch": "^2.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "html-webpack-plugin": "^5.3.1",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "react-transition-group": "^4.4.2",
-    "react-redux": "^7.2.4"
+    "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
@@ -34,6 +35,7 @@
     "@types/copy-webpack-plugin": "^8.0.1",
     "@types/jest": "^27.0.1",
     "@types/mini-css-extract-plugin": "^2.0.1",
+    "@types/node-fetch": "^2.5.12",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
     "@types/react-redux": "^7.1.18",

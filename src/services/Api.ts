@@ -1,16 +1,17 @@
+import fetch from "node-fetch";
 import { SearchFiltres } from "../shared/searchFiltres";
 import { SearchArticle, SearchValue } from "../shared/searchValue";
 
-const API_KEY = '&apiKey=87ca461f985545f6a72a5f22ef657d27';
-const URL = 'https://newsapi.org/v2/everything?language=en&';
-const DETAILS_URL ="https://newsapi.org/v2/everything?qInTitle=";
+export const API_KEY = '&apiKey=87ca461f985545f6a72a5f22ef657d27';
+export const URL = 'https://newsapi.org/v2/everything?language=en&';
+export const DETAILS_URL ="https://newsapi.org/v2/everything?qInTitle=";
 
-const createRequestUrl = (filtres: SearchFiltres): string => {
+export const createRequestUrl = (filtres: SearchFiltres): string => {
     const queryParams = Object.keys(filtres).map((key) => `${key}=${filtres[(key as keyof SearchFiltres)]}`).join('&');
     return URL + queryParams + API_KEY
 }
 
-const createDetailsUrl = (tittle: string): string => {
+export const createDetailsUrl = (tittle: string): string => {
     return DETAILS_URL + tittle + API_KEY;
 }
 
